@@ -1,87 +1,96 @@
-﻿<Window x:Class="My_.MainWindow"
+﻿<Window x:Class="MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:My_First_Game"
+        xmlns:local="clr-namespace:SimpleGame"
         mc:Ignorable="d"
         Title="Flappy Bird" Height="439.07" Width="756.28" WindowStyle="ThreeDBorderWindow">
-    <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" RenderTransformOrigin="0.518,0.486">
-        <Grid.Effect>
-            <DropShadowEffect/>
-        </Grid.Effect>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="12*"/>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="113*"/>
-        </Grid.ColumnDefinitions>
-
-        <Button x:Name="button1" HorizontalAlignment="Left" Margin="69,126,0,0" VerticalAlignment="Top" Width="115" Height="103" RenderTransformOrigin="2.455,0.809" Grid.Column="2" Click="Button_Click2" Background="{x:Null}">
-            <Button.Effect>
+    <TabControl x:Name="tcGame">
+        <TabItem Header="Settings">
+            <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" RenderTransformOrigin="0.518,0.486">
+            <Grid.Effect>
                 <DropShadowEffect/>
-            </Button.Effect>
+            </Grid.Effect>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="12*"/>
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition Width="113*"/>
+            </Grid.ColumnDefinitions>
+        
+                <Button x:Name="button1" HorizontalAlignment="Left" Margin="69,126,0,0" VerticalAlignment="Top" Width="115" Height="103" RenderTransformOrigin="2.455,0.809" Grid.Column="2" Click="Button_Click2" Background="{x:Null}">
+                    <Button.Effect>
+                        <DropShadowEffect/>
+                    </Button.Effect>
 
-            <Image Source="bird1.png" Height="78" Width="113" RenderTransformOrigin="2.243,0.715" >
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleX="0.674"/>
-                        <RotateTransform/>
-                        <TranslateTransform X="0.555"/>
-                    </TransformGroup>
-                </Image.RenderTransform>
-            </Image>
+                    <Image Source="bird1.png" Height="78" Width="113" RenderTransformOrigin="2.243,0.715" >
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="0.674"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="0.555"/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                </Button>
+                
+                <Button x:Name="button2" HorizontalAlignment="Left" Margin="251,126,0,0" VerticalAlignment="Top" Width="115" Height="103" RenderTransformOrigin="2.455,0.809" Grid.Column="2" Click="Button_Click3" Background="{x:Null}">
+                    <Button.Effect>
+                        <DropShadowEffect/>
+                    </Button.Effect>
 
-        </Button>
-        <Button x:Name="button2" HorizontalAlignment="Left" Margin="251,126,0,0" VerticalAlignment="Top" Width="115" Height="103" RenderTransformOrigin="2.455,0.809" Grid.Column="2" Click="Button_Click3" Background="{x:Null}">
-            <Button.Effect>
-                <DropShadowEffect/>
-            </Button.Effect>
+                    <Image Source="bird2.png" Height="74" Width="96" RenderTransformOrigin="2.243,0.715" >
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="0.674"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="0.555"/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
 
-            <Image Source="bird2.png" Height="74" Width="96" RenderTransformOrigin="2.243,0.715" >
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleX="0.674"/>
-                        <RotateTransform/>
-                        <TranslateTransform X="0.555"/>
-                    </TransformGroup>
-                </Image.RenderTransform>
-            </Image>
+                </Button>
 
-        </Button>
+                <Button x:Name="button3" HorizontalAlignment="Left" Margin="443,126,0,0" VerticalAlignment="Top" Width="115" Height="103" RenderTransformOrigin="2.455,0.809" Grid.Column="2" Click="Button_Click3" Background="{x:Null}">
+                    <Button.Effect>
+                        <DropShadowEffect/>
+                    </Button.Effect>
 
-        <Button x:Name="button3" HorizontalAlignment="Left" Margin="443,126,0,0" VerticalAlignment="Top" Width="115" Height="103" RenderTransformOrigin="2.455,0.809" Grid.Column="2" Click="Button_Click3" Background="{x:Null}">
-            <Button.Effect>
-                <DropShadowEffect/>
-            </Button.Effect>
+                    <Image Source="bird3.png" Height="75" Width="104" RenderTransformOrigin="2.243,0.715" >
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="0.674"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="0.555"/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
 
-            <Image Source="bird3.png" Height="75" Width="104" RenderTransformOrigin="2.243,0.715" >
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleX="0.674"/>
-                        <RotateTransform/>
-                        <TranslateTransform X="0.555"/>
-                    </TransformGroup>
-                </Image.RenderTransform>
-            </Image>
+                </Button>
+                <TextBlock HorizontalAlignment="Left" Margin="118,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="93" Width="397" FontWeight="Bold" Text="CHOOSE A BIRD" RenderTransformOrigin="1.147,0.706" FontSize="48" Foreground="#FF000105" Grid.Column="2">
+                    <TextBlock.Effect>
+                        <DropShadowEffect/>
+                    </TextBlock.Effect>
+                </TextBlock>
+                <Button Content="PLAY" Grid.Column="2" HorizontalAlignment="Left" Margin="496,314,0,0" VerticalAlignment="Top" Width="144" Height="71" FontWeight="Bold" FontSize="48" Foreground="#FF00103C" Click="Button_Click">
+                    <Button.Effect>
+                        <DropShadowEffect/>
+                    </Button.Effect>
+                    <Button.Background>
+                        <ImageBrush/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+        </TabItem>
+            <TabItem Header="Game" HorizontalAlignment="Left" Margin="-2.4,-2,-2.4,-0.2" Width="48">
+            <Grid>
 
-        </Button>
-        <TextBlock HorizontalAlignment="Left" Margin="118,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="93" Width="397" FontWeight="Bold" Text="CHOOSE A BIRD" RenderTransformOrigin="1.147,0.706" FontSize="48" Foreground="#FF000105" Grid.Column="2">
-            <TextBlock.Effect>
-                <DropShadowEffect/>
-            </TextBlock.Effect>
-        </TextBlock>
-        <Button Content="PLAY" Grid.Column="2" HorizontalAlignment="Left" Margin="496,314,0,0" VerticalAlignment="Top" Width="144" Height="71" FontWeight="Bold" FontSize="48" Foreground="#FF00103C" Click="Button_Click">
-            <Button.Effect>
-                <DropShadowEffect/>
-            </Button.Effect>
-            <Button.Background>
-                <ImageBrush/>
-            </Button.Background>
-        </Button>
-
-    </Grid>
+            </Grid>
+        </TabItem>
+    </TabControl>
+    
 </Window>
 
