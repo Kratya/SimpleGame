@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace SimpleGame
 {
@@ -17,17 +19,32 @@ namespace SimpleGame
 
         public float gravityValue;
 
-        public Image birdImg, birdImg2, birdImg3;
+        public ImageSource birdImg;
 
 
 
         public bool isAlive;
 
-        public Player(int x, int y)
+        public Player(int x, int y, int sBird)
         {
-            birdImg = new Bitmap("C:\\Users\\krave\\OneDrive\\Документы\\Игра\\bird1.png");
-            // birdImg2 = new Bitmap("C:\\Users\\krave\\OneDrive\\Документы\\Игра\\bird2.png");
-            //  birdImg3 = new Bitmap("C:\\Users\\krave\\OneDrive\\Документы\\Игра\\bird3.png");
+            switch (sBird)
+            {
+                case  0:
+                    //birdImg = new Bitmap("./../../img/bird1.png");
+                    birdImg = new BitmapImage(new Uri("./../../img/bird1.png", UriKind.RelativeOrAbsolute));
+                    break;
+                case 1:
+                    //birdImg = new Bitmap("./../../img/bird2.png");
+                    birdImg = new BitmapImage(new Uri("./../../img/bird2.png", UriKind.RelativeOrAbsolute));
+                    break;
+                case 2:
+                    birdImg = new BitmapImage(new Uri("./../../img/bird3.png", UriKind.RelativeOrAbsolute));
+                    //birdImg = new Bitmap("./../../img/bird3.png");
+                    break;
+                default:
+                    break;
+            }
+
             this.x = x;
             this.y = y;
             size = 40;

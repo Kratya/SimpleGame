@@ -11,9 +11,10 @@ using System.Drawing;
 using System.Linq;
 using System.Timers;
 using System.Windows.Input;
-//using System.Windows.Forms;
+using System.Windows.Controls;
 
 
+//Title="MainWindow" Height="450" Width="800" KeyDown="Window_KeyDown" Loaded="Window_Loaded" KeyUp="Window_KeyUp">
 namespace SimpleGame
 {
     public partial class MainWindow : Window
@@ -21,6 +22,8 @@ namespace SimpleGame
         Player bird;
         TheWall wall1;
         TheWall wall2;
+
+        int sBird = 1;
         float gravity;
         private DispatcherTimer aTimer;
 
@@ -30,13 +33,17 @@ namespace SimpleGame
             InitializeGameComponent();
         }
 
-        public void Init()
+        public void InitGame()
         {
-            bird = new Player(200, 200);
-            wall1 = new TheWall(500, -100, true);
-            wall2 = new TheWall(500, 300);
+            bird = new Player(200, 200, sBird);
+            wall1 = new TheWall(500, -100, "./../../img/dtube.png");
+            wall2 = new TheWall(500, 300, "./../../img/ttube.png");
+
+            PlayerSprite.Source = bird.birdImg;
+            PlayerSprite.Width = bird.size;
 
             gravity = 0;
+            RedrawGame();
             //this.Text = "Flappy Bird Score: 0";
             aTimer.Start();
         }
@@ -47,14 +54,14 @@ namespace SimpleGame
             {
                 bird.isAlive = false;
                 aTimer.Stop();
-                Init();
+                InitGame();
             }
 
             if (Collide(bird, wall1) || Collide(bird, wall2))
             {
                 bird.isAlive = false;
                 aTimer.Stop();
-                Init();
+                InitGame();
             }
 
             if (bird.gravityValue != 0.1f)
@@ -65,6 +72,7 @@ namespace SimpleGame
             if (bird.isAlive)
             {
                 MoveWalls();
+                RedrawGame();
             }
         }
 
@@ -90,8 +98,8 @@ namespace SimpleGame
                 Random r = new Random();
                 int y1;
                 y1 = r.Next(-200, 000);
-                wall1 = new TheWall(500, y1, true);
-                wall2 = new TheWall(500, y1 + 400);
+                wall1 = new TheWall(500, y1, "./../../img/dtube.png");
+                wall2 = new TheWall(500, y1 + 400, "./../../img/ttube.png");
                 //this.Text = "Flappy Bird Score: " + ++bird.score;
             }
         }
@@ -101,30 +109,30 @@ namespace SimpleGame
             wall1.x -= 2;
             wall2.x -= 2;
             CreateNewWall();
+            RedrawGame();
         }
 
-        private void OnPaint(object sender, PaintEventArgs e)
+
+        private void RedrawGame()
         {
-            Graphics graphics = e.Graphics;
+            Canvas.SetTop(PlayerSprite, bird.y);
+            Canvas.SetLeft(PlayerSprite, bird.x);
 
-            graphics.DrawImage(bird.birdImg, bird.x, bird.y, bird.size, bird.size);
+            Canvas.SetTop(DTube, wall1.y);
+            Canvas.SetLeft(DTube, wall1.x);
 
-
-            graphics.DrawImage(wall1.wallImg, wall1.x, wall1.y, wall1.sizeX, wall1.sizeY);
-
-            graphics.DrawImage(wall2.wallImg, wall2.x, wall2.y, wall2.sizeX, wall2.sizeY);
-        }
-
-        private void aTimer_Tick(object sender, EventArgs e)
-        {
-
+            Canvas.SetTop(TTube, wall2.y);
+            Canvas.SetLeft(TTube, wall2.x);
         }
 
         private void InitializeGameComponent()
         {
             this.aTimer = new DispatcherTimer();
-            this.aTimer.Tick += aTimer_Tick;
+            this.aTimer.Tick += new EventHandler(update);
             this.aTimer.Interval = TimeSpan.FromMilliseconds(10);
+
+            //InitGame();
+
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -143,10 +151,26 @@ namespace SimpleGame
             }
         }
 
-        private void GameStart()
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             tcGame.SelectedIndex = 1;
             aTimer.Start();
+            InitGame();
+        }
+
+        private void Button_Click2(object sender, RoutedEventArgs e)
+        {
+            sBird = 0;
+        }
+
+        private void Button_Click3(object sender, RoutedEventArgs e)
+        {
+            sBird = 1;
+        }
+
+        private void Button_Click4(object sender, RoutedEventArgs e)
+        {
+            sBird = 2;
         }
     }
 }

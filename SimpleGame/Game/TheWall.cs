@@ -18,9 +18,18 @@ namespace SimpleGame
 
         public Image wallImg;
 
+        public TheWall(int x, int y, string typeTube)
+        {
+            wallImg = new Bitmap(typeTube);
+            this.x = x;
+            this.y = y;
+            sizeX = 50;
+            sizeY = 250;
+        }
+        /*
         public TheWall(int x, int y, bool isRotatedImage = false)
         {
-            wallImg = new Bitmap("C:\\Users\\krave\\OneDrive\\Документы\\Игра\\tube.png");
+            wallImg = new Bitmap("./../../img/tube.png");
             this.x = x;
             this.y = y;
             sizeX = 50;
@@ -28,5 +37,6 @@ namespace SimpleGame
             if (isRotatedImage)
                 wallImg.RotateFlip(RotateFlipType.Rotate180FlipX);
         }
+        */
     }
 }

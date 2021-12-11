@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleGame"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" KeyDown="Window_KeyDown" Loaded="Window_Loaded" KeyUp="Window_KeyUp">
+        Title="MainWindow" Height="450" Width="800" KeyDown="Window_KeyDown">
     <TabControl x:Name="tcGame">
         <TabItem Header="Settings">
             <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" RenderTransformOrigin="0.518,0.486">
@@ -23,7 +23,7 @@
                         <DropShadowEffect/>
                     </Button.Effect>
 
-                    <Image Source="bird1.png" Height="78" Width="113" RenderTransformOrigin="2.243,0.715" >
+                    <Image Source="/img/bird1.png" Height="78" Width="113" RenderTransformOrigin="2.243,0.715" >
                         <Image.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -40,7 +40,7 @@
                         <DropShadowEffect/>
                     </Button.Effect>
 
-                    <Image Source="bird2.png" Height="74" Width="96" RenderTransformOrigin="2.243,0.715" >
+                    <Image Source="/img/bird2.png" Height="74" Width="96" RenderTransformOrigin="2.243,0.715" >
                         <Image.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -53,12 +53,12 @@
 
                 </Button>
 
-                <Button x:Name="button3" HorizontalAlignment="Left" Margin="443,126,0,0" VerticalAlignment="Top" Width="115" Height="103" RenderTransformOrigin="2.455,0.809" Grid.Column="2" Click="Button_Click3" Background="{x:Null}">
+                <Button x:Name="button3" HorizontalAlignment="Left" Margin="443,126,0,0" VerticalAlignment="Top" Width="115" Height="103" RenderTransformOrigin="2.455,0.809" Grid.Column="2" Click="Button_Click4" Background="{x:Null}">
                     <Button.Effect>
                         <DropShadowEffect/>
                     </Button.Effect>
 
-                    <Image Source="bird3.png" Height="75" Width="104" RenderTransformOrigin="2.243,0.715" >
+                    <Image Source="/img/bird3.png" Height="75" Width="104" RenderTransformOrigin="2.243,0.715" >
                         <Image.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -87,7 +87,11 @@
         </TabItem>
         <TabItem Header="Game" HorizontalAlignment="Left" Margin="-2.4,-2,-2.4,-0.2" Width="48">
             <Grid>
-
+                <Canvas x:Name="gameCanv">
+                    <Image Canvas.Top="200" Canvas.Left="200" x:Name="PlayerSprite" Height="40" Width="40" Source="/img/bird2.png"/>
+                    <Image Canvas.Top="-100" Canvas.Left="500" x:Name="DTube" Height="250" Width="50" Source="/img/dtube.png"/>
+                    <Image Canvas.Top="300" Canvas.Left="500" x:Name="TTube" Height="250" Width="50" Source="/img/ttube.png"/>
+                </Canvas>
             </Grid>
         </TabItem>
     </TabControl>
