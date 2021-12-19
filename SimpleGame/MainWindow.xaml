@@ -87,10 +87,31 @@
         </TabItem>
         <TabItem Header="Game" HorizontalAlignment="Left" Margin="-2.4,-2,-2.4,-0.2" Width="48">
             <Grid>
-                <Canvas x:Name="gameCanv">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="191*"/>
+                </Grid.ColumnDefinitions>
+                <Canvas x:Name="gameCanv" Grid.ColumnSpan="2" Margin="0,0,0,-0.2">
                     <Image Canvas.Top="200" Canvas.Left="200" x:Name="PlayerSprite" Height="40" Width="40" Source="/img/bird2.png"/>
                     <Image Canvas.Top="-100" Canvas.Left="500" x:Name="DTube" Height="250" Width="50" Source="/img/dtube.png"/>
                     <Image Canvas.Top="300" Canvas.Left="500" x:Name="TTube" Height="250" Width="50" Source="/img/ttube.png"/>
+                    <Image Canvas.Top="-100" Canvas.Left="500" x:Name="DTubeTemp" Height="250" Width="50" Source="/img/dtube.png" Visibility="Hidden"/>
+                    <Image Canvas.Top="300" Canvas.Left="500" x:Name="TTubeTemp" Height="250" Width="50" Source="/img/ttube.png" Visibility="Hidden"/>
+                    <TextBlock Canvas.Top="350" Canvas.Left="10" x:Name="gameText">
+                        <Run FontSize="20" Foreground="LightSeaGreen">
+                            Score: 
+                        </Run>
+                    </TextBlock>
+                    <TextBlock Canvas.Top="350" Canvas.Left="80" x:Name="gameScore">
+                        <Run FontSize="20" Foreground="Red" FontWeight="Bold">
+                            0
+                        </Run>
+                    </TextBlock>
+                    <TextBlock Canvas.Top="320" Canvas.Left="10" x:Name="gameHelp">
+                        <Run FontSize="20" Foreground="LightSeaGreen" FontWeight="Bold">
+                            Press W to fly
+                        </Run>
+                    </TextBlock>
                 </Canvas>
             </Grid>
         </TabItem>

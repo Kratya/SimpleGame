@@ -4,26 +4,29 @@ using System.Linq;
 using System.Windows.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Timers;
 using System.Windows.Input;
 using System.Windows.Controls;
-
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 //Title="MainWindow" Height="450" Width="800" KeyDown="Window_KeyDown" Loaded="Window_Loaded" KeyUp="Window_KeyUp">
 namespace SimpleGame
 {
     public partial class MainWindow : Window
     {
-        Player bird;
-        TheWall wall1;
-        TheWall wall2;
+        //int sBird = 0;
+        Player bird =  new Player(200, 200, 1);
 
-        int sBird = 1;
+        TheWall wall1 = new TheWall(500, -100, "./../../img/dtube.png");
+        TheWall wall2 = new TheWall(500, 300, "./../../img/ttube.png");
+
+        TheWall t_wall1 = new TheWall(500, -100, "./../../img/dtube.png");
+        TheWall t_wall2 = new TheWall(500, 300, "./../../img/ttube.png");
+
         float gravity;
         private DispatcherTimer aTimer;
 
@@ -35,16 +38,33 @@ namespace SimpleGame
 
         public void InitGame()
         {
+            /*
             bird = new Player(200, 200, sBird);
             wall1 = new TheWall(500, -100, "./../../img/dtube.png");
             wall2 = new TheWall(500, 300, "./../../img/ttube.png");
+            */
+            bird.isAlive = true;
+            bird.x = 200;
+            bird.y = 200;
+            bird.score = 0;
 
+            wall1.x = 500;
+            wall1.y = -100;
+
+            wall2.x = 500;
+            wall2.y = 300;
+
+            CreateNewWall();
+            /*
             PlayerSprite.Source = bird.birdImg;
             PlayerSprite.Width = bird.size;
+            */
 
             gravity = 0;
             RedrawGame();
-            //this.Text = "Flappy Bird Score: 0";
+            this.gameScore.Text = "0";
+            this.gameScore.FontSize = 20;
+            this.gameScore.Foreground = new SolidColorBrush(Colors.Red);
             aTimer.Start();
         }
 
@@ -64,8 +84,8 @@ namespace SimpleGame
                 InitGame();
             }
 
-            if (bird.gravityValue != 0.1f)
-                bird.gravityValue += 0.005f;
+            // if (bird.gravityValue != 0.1f)
+            bird.gravityValue += 0.005f;
             gravity += bird.gravityValue;
             bird.y += gravity;
 
@@ -93,14 +113,29 @@ namespace SimpleGame
 
         private void CreateNewWall()
         {
+            if (wall1.x < t_wall1.x - 100)
+            {
+                DTubeTemp.Visibility = Visibility.Visible;
+                TTubeTemp.Visibility = Visibility.Visible;
+            }
             if (wall1.x < bird.x - 100)
             {
                 Random r = new Random();
                 int y1;
                 y1 = r.Next(-200, 000);
-                wall1 = new TheWall(500, y1, "./../../img/dtube.png");
-                wall2 = new TheWall(500, y1 + 400, "./../../img/ttube.png");
-                //this.Text = "Flappy Bird Score: " + ++bird.score;
+                wall1 = new TheWall(t_wall1.x, t_wall1.y, "./../../img/dtube.png");
+                wall2 = new TheWall(t_wall2.x, t_wall2.y, "./../../img/ttube.png");
+                t_wall1 = new TheWall(500, y1, "./../../img/dtube.png");
+                t_wall2 = new TheWall(500, y1 + 400, "./../../img/ttube.png");
+                //wall1 = new TheWall(500, y1, "./../../img/dtube.png");
+                //wall2 = new TheWall(500, y1 + 400, "./../../img/ttube.png");
+                ++bird.score;
+                this.gameScore.Text = bird.score.ToString();
+                this.gameScore.FontSize = 20;
+                this.gameScore.Foreground = new SolidColorBrush(Colors.Red);
+
+                DTubeTemp.Visibility = Visibility.Hidden;
+                TTubeTemp.Visibility = Visibility.Hidden;
             }
         }
 
@@ -160,17 +195,23 @@ namespace SimpleGame
 
         private void Button_Click2(object sender, RoutedEventArgs e)
         {
-            sBird = 0;
+            bird.birdImg = new BitmapImage(new Uri("./../../img/bird1.png", UriKind.RelativeOrAbsolute));
+            PlayerSprite.Source = bird.birdImg;
+            PlayerSprite.Width = bird.size;
         }
 
         private void Button_Click3(object sender, RoutedEventArgs e)
         {
-            sBird = 1;
+            bird.birdImg = new BitmapImage(new Uri("./../../img/bird2.png", UriKind.RelativeOrAbsolute)); ;
+            PlayerSprite.Source = bird.birdImg;
+            PlayerSprite.Width = bird.size;
         }
 
         private void Button_Click4(object sender, RoutedEventArgs e)
         {
-            sBird = 2;
+            bird.birdImg = new BitmapImage(new Uri("./../../img/bird3.png", UriKind.RelativeOrAbsolute)); ;
+            PlayerSprite.Source = bird.birdImg;
+            PlayerSprite.Width = bird.size;
         }
     }
 }
